@@ -1,0 +1,12 @@
+USE BDVENTAS2022eco
+GO
+
+CREATE OR ALTER PROC PA_LISTARXNOMBRE
+	@nom varchar(50)='%'
+AS
+SELECT A.cod_art,A.nom_art,A.uni_med,A.pre_art,A.stk_art,A.eli_art
+FROM Articulos A WHERE A.nom_art like @nom + '%' 
+GO
+
+exec PA_LISTARXNOMBRE 'MOUSE'
+go

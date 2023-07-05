@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MyCl2AndreeChiquis.Models.ArticuloModel>
+
+@{
+    ViewData["Title"] = "listarArticulos";
+}
+
+<link rel="stylesheet" href="~/css/list.css" />
+
+<h1 style="text-align:center">Tienda Virtual</h1>
+
+<p>
+    <a asp-action="VerCarrito" class=" btn btn-info">Ver Carrito de Compra</a>
+</p>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.Label("Nombre de Articulo:")
+            <div class="input-group">
+                @Html.TextBox("nom", null, new { @class = "form-control" })
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Consultar</button>
+                </div>
+            </div>
+        </div>
+    }
+    <br><br>
+    </div>
+<div class="containerlist">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="column">
+            <em>Codigo: </em>@Html.DisplayFor(modelItem => item.cod_art)
+            <br />
+            <em>Desc: </em>
+
+            @Html.DisplayFor(modelItem => item.nom_art)
+            <br />
+            <em>Categoria: </em>
+
+            @Html.DisplayFor(modelItem => item.uni_med)
+            <br />
+            <em>Precio: </em>
+
+            @Html.DisplayFor(modelItem => item.pre_art)
+            <br />
+            <em>Stock: </em>
+
+            @Html.DisplayFor(modelItem => item.stk_art)
+            <br />
+            <img src="@Url.Content("/articulos/" + item.cod_art + ".jpg" )"
+                 alt="@item.nom_art" />
+            <br />
+            @Html.ActionLink("Agregar", "AgregarCarrito",
+        new { id = item.cod_art }, new {@class = "btn btn-success"})
+
+        </div>
+    }
+
+</div>

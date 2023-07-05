@@ -1,0 +1,61 @@
+﻿@model MyCl2AndreeChiquis.Models.ArticuloModel
+
+@{
+    ViewData["Title"] = "AgregarCarrito";
+}
+
+<h1>Resumen del Carrito</h1>
+
+<div>
+    <a asp-action="ListarProductos" class="btn btn-warning">Seguir Comprando</a>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cod_art)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cod_art)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nom_art)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nom_art)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.uni_med)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.uni_med)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pre_art)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pre_art)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.stk_art)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.stk_art)
+        </dd>
+    </dl>
+</div>
+<div>
+    <!-- formulario MVC -->
+    @using(Html.BeginForm())
+    {
+        <div>
+            <!-- hidden que almacene el codigo del producto seleccionado -->
+            @Html.Hidden("id", Model.cod_art)
+            Ingrese la Cantidad: @Html.TextBox("ncantidad", 1)
+            <button type="submit" class="btn btn-success">Agregar Producto</button> |
+            <a asp-controller="Ventas" asp-action="VerCarrito" class="btn btn-primary">Ver Carrito</a>
+        </div>        
+    }
+</div>
+<br/>
+<div class="alert alert-info">
+        @ViewBag.MENSAJE
+</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MyCl2AndreeChiquis.Models.CarritoModel>
+
+@{
+    ViewData["Title"] = "VerCarrito";
+}
+
+<h1>VerCarrito</h1>
+
+<p>
+    <a  class="btn btn-warning" asp-action="listarArticulos">Regresar Al Listado</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.importe)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.importe)
+            </td>
+            <td>
+                @Html.ActionLink("Actualizar", "AgregarCarrito", 
+                                 new { id = item.codigo, ncantidad = item.cantidad }, new {@class ="btn btn-info"})
+                <form asp-action="EliminarProducto"
+                      asp-route-id = "@item.codigo"
+                      method="post">
+                      <div>
+                          <button type="submit"
+                              class="btn btn-danger"
+                              onclick="return confirm('Estás seguro de Eliminar al Producto')"  
+                          >
+                              Eliminar</button>
+                      </div>
+                </form>                                 
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br/>
+<div>
+    <p>
+        Total a Pagar: @ViewBag.TOTAL
+    </p>
+</div>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MyCl2AndreeChiquis.props" />
+</Project>
